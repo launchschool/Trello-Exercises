@@ -2,18 +2,18 @@ import { useState } from "react";
 import ListCards from "./ListCards";
 import ToggleableAddCard from "./ToggleableAddCard";
 
-const ListWrapper = (props) => {
+const ListWrapper = ({ title, _id, cards }) => {
   const [isOpenAddCard, setIsOpenAddCard] = useState(false);
   const classList = isOpenAddCard
     ? "list-wrapper add-dropdown-active"
     : "list-wrapper";
+  const listCards = cards.filter((card) => card.listId === _id);
   return (
     <div className={classList}>
       <div className="list-background">
         <div className="list">
-          <a href="/#" className="more-icon sm-icon"></a>
           <div>
-            <p className="list-title">{props.title}</p>
+            <p className="list-title">{title}</p>
           </div>
           <div className="add-dropdown add-top">
             <div className="card"></div>
@@ -25,9 +25,9 @@ const ListWrapper = (props) => {
               <span>...</span>
             </div>
           </div>
-          <ListCards listId={props._id} />
+          <ListCards cards={listCards} />
           <ToggleableAddCard
-            listId={props._id}
+            listId={_id}
             isOpenAddCard={isOpenAddCard}
             setIsOpenAddCard={setIsOpenAddCard}
           />

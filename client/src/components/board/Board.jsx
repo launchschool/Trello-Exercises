@@ -1,28 +1,66 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useReducer } from "react";
 import BoardHeader from "./BoardHeader";
 import ListContainer from "./ListContainer";
-import * as actions from "../../actions/BoardActions";
-import { getBoardById } from "../../selectors/boardSelectors";
 import { useParams } from "react-router";
+import API from "../../lib/ApiClient";
+import { normalizeData } from "../../utils/helpers";
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "GET_BOARD":
+      const boardId = action.board._id;
+      const isBoardInState = state.boards.find(
+        (board) => board._id === boardId
+      );
+      const { board, lists, cards } = normalizeData(action.board);
+      const listsFromOtherBoards = state.lists.filter(
+        (list) => list.boardId !== action.board._id
+      );
+      const cardsFromOtherBoards = state.cards.filter(
+        (card) => card.boardId !== boardId
+      );
+      return {
+        boards: isBoardInState ? state.boards : state.boards.concat(board),
+        lists: listsFromOtherBoards.concat(lists),
+        cards: cardsFromOtherBoards.concat(cards),
+      };
+    default: {
+      return state;
+    }
+  }
+};
+
+const initialState = {
+  boards: [],
+  lists: [],
+  cards: [],
+};
 
 const Board = () => {
   const { id: boardId } = useParams();
-  const stateBoards = useSelector((state) => state.boards);
-  const board = getBoardById(stateBoards, boardId);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const dispatch = useDispatch();
+  const board = state.boards.find((board) => board._id === boardId);
+
+  const boardLists = state.lists.filter((list) => list.boardId === boardId);
+
   useEffect(() => {
-    if (!boardId) return;
-    dispatch(actions.fetchBoard(boardId));
-  }, [dispatch, boardId]);
+    (async () => {
+      const board = await API.getBoard(boardId);
+      dispatch({ type: "GET_BOARD", board });
+    })();
+  }, [boardId]);
 
   if (board) {
     return (
       <div>
         <BoardHeader title={board.title} />
         <main>
-          <ListContainer boardId={board._id} />
+          <ListContainer
+            lists={boardLists}
+            cards={state.cards}
+            boardId={boardId}
+          />
         </main>
       </div>
     );

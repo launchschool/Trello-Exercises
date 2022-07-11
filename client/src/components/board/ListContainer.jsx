@@ -2,10 +2,10 @@ import React from "react";
 import ExistingLists from "./ExistingLists";
 import AddList from "./AddList";
 
-const ListContainer = ({ boardId }) => {
+const ListContainer = ({ boardId, lists, cards }) => {
   return (
     <div id="list-container" className="list-container">
-      <ExistingLists boardId={boardId} />
+      <ExistingLists lists={lists} cards={cards} />
       <AddList boardId={boardId} />
     </div>
   );
