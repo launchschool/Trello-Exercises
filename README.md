@@ -14,6 +14,8 @@ DB=mongodb+srv://lsaccount:testing123@cluster0.emccd5i.mongodb.net/test?retryWri
 
 While in the server directory, run `npm run dev` to start the live server. The live server will watch for changes to files in the `src` directory and reload the page when they're changed.
 
+---
+
 boardId = "62cbc5fe07edfc39c2767247"
 
 card1 = "62cbc7906891363a4e523daa"
