@@ -1,15 +1,10 @@
-import { useState } from "react";
 import ListCards from "./ListCards";
 import ToggleableAddCard from "./ToggleableAddCard";
 
 const ListWrapper = ({ title, _id, cards }) => {
-  const [isOpenAddCard, setIsOpenAddCard] = useState(false);
-  const classList = isOpenAddCard
-    ? "list-wrapper add-dropdown-active"
-    : "list-wrapper";
   const listCards = cards.filter((card) => card.listId === _id);
   return (
-    <div className={classList}>
+    <div className="list-wrapper">
       <div className="list-background">
         <div className="list">
           <div>
@@ -26,11 +21,7 @@ const ListWrapper = ({ title, _id, cards }) => {
             </div>
           </div>
           <ListCards cards={listCards} />
-          <ToggleableAddCard
-            listId={_id}
-            isOpenAddCard={isOpenAddCard}
-            setIsOpenAddCard={setIsOpenAddCard}
-          />
+          <ToggleableAddCard listId={_id} />
         </div>
       </div>
     </div>
