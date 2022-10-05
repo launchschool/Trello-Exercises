@@ -1,7 +1,12 @@
-const ToggleableAddCard = () => {
+const ToggleableAddCard = ({ isCardActive, onToggleCardActivation }) => {
+  let cardClass = ["add-dropdown", "add-bottom"];
+
+  if (isCardActive) {
+    cardClass.push("active-card");
+  }
   return (
     <>
-      <div className="add-dropdown add-bottom">
+      <div className={cardClass.join(" ")}>
         <div className="card">
           <div className="card-info"></div>
           <textarea name="add-card"></textarea>
@@ -10,12 +15,16 @@ const ToggleableAddCard = () => {
         <a href="/#" className="button">
           Add
         </a>
-        <i className="x-icon icon"></i>
+        <i className="x-icon icon" onClick={onToggleCardActivation}></i>
         <div className="add-options">
           <span>...</span>
         </div>
       </div>
-      <div className="add-card-toggle" data-position="bottom">
+      <div
+        className="add-card-toggle"
+        onClick={onToggleCardActivation}
+        data-position="bottom"
+      >
         Add a card...
       </div>
     </>
