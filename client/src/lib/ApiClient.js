@@ -34,7 +34,7 @@ const apiClient = {
   updateCard: async (id, attrs) => {
     try {
       const { data } = await axios.put(routes.updateCardUrl(id), {
-        card: attrs,
+        attrs,
       });
       return data.card;
     } catch (e) {

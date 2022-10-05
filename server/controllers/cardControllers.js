@@ -21,10 +21,10 @@ const createCard = (req, res, next) => {
 };
 
 const updateCard = (req, res, next) => {
-  const card = req.card;
+  const cardId = req.params.id;
   const { attrs } = req.body;
   Card.findByIdAndUpdate(
-    card._id,
+    cardId,
     {
       ...attrs,
     },
