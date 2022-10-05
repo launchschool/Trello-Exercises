@@ -23,6 +23,14 @@ const apiClient = {
       logError(e);
     }
   },
+  getCard: async (id) => {
+    try {
+      const { data } = await axios.get(routes.getCardUrl(id));
+      return data.card;
+    } catch (e) {
+      logError(e);
+    }
+  },
 };
 
 export default apiClient;

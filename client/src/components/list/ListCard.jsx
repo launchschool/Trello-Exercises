@@ -1,6 +1,4 @@
-import React from "react";
-
-const ListCard = ({title, labels, description }) => {
+const ListCard = ({ title, labels, description, _id }) => {
   return (
     <div className="card-background">
       <div className="card ">

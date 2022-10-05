@@ -18,10 +18,6 @@ While in the server directory, run `npm run dev` to start the live server. The l
 
 boardId = "62cbc5fe07edfc39c2767247"
 
-card1 = "62cbc7906891363a4e523daa"
-
-card2 = "62cbc79d6891363a4e523daf"
-
 # Challenge 1
 
 - When a user clicks a card:
@@ -29,9 +25,13 @@ card2 = "62cbc79d6891363a4e523daf"
   - URL changes to "/cards/:id"
   - Board is still shown in the background
 
-To display the Card Modal you can just render it on page, along with the Board and the provided CSS will handle everything else.
+You already have the CardModal component.
 
-_Important_ - When you refresh the page at "/cards/:id" both Board and Card Modal should still be visible
+To get the card from the server you can use `API.getCard()` method and pass `cardId` to it. You just need to import `API` from the `ApiClient.js` file in `lib` folder.
+
+To update the state with the fetched card, you can use `GET_CARD` action, to which you need to pass `card` property as a payload. The reducer is defined in `reducers` folder, `reducer.js` file.
+
+_Important_ - When you refresh the page at "/cards/:id" both Board and Card Modal should still be visible. List title, on line `15` in the CardModal should be dynamic.
 
 # Challenge 2
 
