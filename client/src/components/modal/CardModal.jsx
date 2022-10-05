@@ -13,7 +13,7 @@ const CardModal = () => {
           <p>
             in list{" "}
             <a href="/#" className="link">
-              You have to render a dynamic list here
+              You have to render a dynamic list title here
             </a>
             <i className="sub-icon sm-icon"></i>
           </p>
