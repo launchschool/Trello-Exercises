@@ -45,8 +45,6 @@ _UI_
 
 The new card form is active when the parent `.list-wrapper` has the `add-dropdown-active` class and the `.add-dropdown.add-bottom` element has the `active-card` class.
 
-Since only one list should have the form active at a time, only one list should have the `add-dropdown-active` class at a time.
-
 # Challenge 3
 
 - User can Edit the card title in the Card Modal. When the modal opens card title is visible, and once the user changes it, it is saved "on blur".
