@@ -33,6 +33,17 @@ export const reducer = (state = initialState, action) => {
             })
           : state.cards.concat(action.card),
       };
+    case "UPDATE_CARD": {
+      return {
+        ...state,
+        cards: state.cards.map((c) => {
+          if (c._id === action.card._id) {
+            return action.card;
+          }
+          return c;
+        }),
+      };
+    }
     default: {
       return state;
     }

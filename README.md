@@ -48,3 +48,7 @@ Since only one list should have the form active at a time, only one list should 
 # Challenge 3
 
 - User can Edit the card title in the Card Modal. When the modal opens card title is visible, and once the user changes it, it is saved "on blur".
+
+To update the card you can use `API.updateCard()` method and pass `cardId` to and the new title wrapped in an object `{title: newTitle}`. You also need to import `API` from the `ApiClient.js` file in `lib` folder.
+
+To update the state with the updated card, you can use `UPDATE_CARD` action, to which you need to pass `card` property as a payload. The reducer is defined in `reducers` folder, `reducer.js` file.
